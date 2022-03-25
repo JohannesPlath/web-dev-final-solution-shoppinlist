@@ -1,0 +1,22 @@
+@import url('https://fonts.googleapis.com/css2?family=Michroma&display=swap');
+
+.app-logo {
+  font-family: 'Michroma', sans-serif;
+}
+
+mat-nav-list.list-horizontal {
+  padding: 0;
+
+  a {
+    display: inline-block;
+    height: auto;
+    width: auto;
+  }
+}
+
+.active-route {
+  color: var(--primary-color);
+  //color: var(--secondary-color);
+  background: rgba(255, 255, 255, 0.04);
+  //background: green;
+}

@@ -1,0 +1,19 @@
+.center-container {
+  height: 100%;
+  display: flex;
+  flex-flow: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.bottomBox {
+  display: flex;
+  flex-flow: row;
+
+}
+
+.bottomRow {
+  display: flex;
+  flex-flow: row;
+  padding: 10%;
+}

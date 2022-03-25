@@ -1,0 +1,43 @@
+<div class='footer mat-toolbar'>
+  <div class='content'>
+    <div class='flex-column flex-footer-item left-item'>
+      <button mat-icon-button (click)='goToGithubRepo()'>
+        <mat-icon svgIcon='github'></mat-icon>
+      </button>
+      <div class='icon-text'>
+        <mat-icon class='scale-down margin-right-small'>description</mat-icon>
+        <a class='line-height-m font-14px' routerLink='/description' routerLinkActive='active-link'>description &
+          disclaim</a>
+      </div>
+    </div>
+    <div class='flex-column flex-footer-item center-item'>
+      <!--      <h2 class='mat-subheading-1 accent-color'>Kontakt</h2>-->
+      <ul class='list-unstyled'>
+        <li class='list-item'>
+          <div class='icon-text'>
+            <mat-icon class='scale-down margin-right-small'>location_on</mat-icon>
+            <a class='line-height-m font-14px'>Friedrichshain</a>
+          </div>
+        </li>
+        <li class='list-item'>
+          <div class='icon-text'>
+            <mat-icon class='scale-down margin-right-small'>phone</mat-icon>
+            <a class='mail font-14px line-height-m no-style' href='tel:+4930696969'>+49 30 69696969</a>
+          </div>
+        </li>
+        <li class='list-item'>
+          <div class='icon-text'>
+            <mat-icon class='scale-down margin-right-small'>email</mat-icon>
+            <a class='mail font-14px no-style' href='mailto:trash.bucked@student.htw-berlin.de'>
+              trash.bucked@student.htw-berlin.de
+            </a>
+          </div>
+        </li>
+      </ul>
+    </div>
+    <div class='flex-column flex-footer-item right-item'>
+      <a class='font-14px line-height-m no-style'>Hier könnte Ihr Firmenname stehen</a>
+    </div>
+  </div>
+</div>
+

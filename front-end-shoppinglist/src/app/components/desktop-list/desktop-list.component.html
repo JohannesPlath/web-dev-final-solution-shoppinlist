@@ -1,0 +1,59 @@
+<div class='flex-row-max-height'>
+  <div class='flex-column'>
+    <div class='flex-row'>
+      <mat-form-field style='margin-bottom: -1.34375em' appearance='fill'>
+        <mat-label>Choose a list</mat-label>
+        <mat-select [(value)]='selection' (selectionChange)='onSelectList($event)'>
+          <mat-option *ngFor='let list of (listsOfUser$ | async)' [value]='list.title'>
+            {{list.title}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      <mat-form-field style='margin-bottom: -1.34375em' appearance='fill'>
+        <mat-label>Seclect first entry</mat-label>
+        <mat-select [(value)]='selection' (selectionChange)='onSelectProductGroup($event)'>
+          <mat-option *ngFor='let list of (enums)' [value]='list'>
+            {{list}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+    <div class='flex-row'>
+      <mat-selection-list [multiple]='false'>
+        <mat-list-option *ngFor='let e of productGroups;' (click)='showItems(e)'>
+          {{ e }}
+        </mat-list-option>
+      </mat-selection-list>
+    </div>
+  </div>
+  <div class='flex-column-max-width'>
+    <div class='center-container padding20'>
+
+      <div class='flex-row flex20 padding10'>
+        <mat-chip-list>
+          <mat-chip
+            *ngFor='let item of filteredItems | async' [value]='item.product'
+            (removed)='remove(item)' (click)='onClickChip(item)'>
+            <p matLine> {{item.product }}</p>
+            <p matLine *ngIf='item.bought_by != null'> {{";  bought by: " + item.bought_by}} </p>
+            <button matChipRemove>
+              <mat-icon>cancel</mat-icon>
+            </button>
+          </mat-chip>
+        </mat-chip-list>
+      </div>
+
+      <div class='flex-row flex80 padding10'>
+        <div class='flex-column-max-width'>
+          <form [formGroup]='productForm' class='product-form' (ngSubmit)='onAddItem()'>
+            <mat-form-field class='full-width' appearance='fill'>
+              <mat-label> {{ placeHolderMsg }}</mat-label>
+              <input matInput maxlength='40' formControlName='productText'>
+            </mat-form-field>
+            <button mat-raised-button color='accent' type='submit'>Add Product</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

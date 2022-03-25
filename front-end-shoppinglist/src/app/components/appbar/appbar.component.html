@@ -1,0 +1,19 @@
+<mat-toolbar>
+  <button mat-icon-button (click)='emitNavToggle()' [style.display]="(isHandset$ | async) ? 'initial' : 'none'"
+          aria-label='Example icon-button with menu icon'>
+    <mat-icon>menu</mat-icon>
+  </button>
+  <div class='app-logo'>
+    SL<span class='color-primary'>2</span>GO
+  </div>
+  <mat-toolbar [style.display]="(isHandset$ | async) ? 'none' : 'flex'">
+    <mat-nav-list class='list-horizontal'>
+      <a mat-list-item [routerLink]="['/login']" [routerLinkActive]="['active-route']">Login</a>
+      <a mat-list-item [routerLink]="['/new-account']" [routerLinkActive]="['active-route']">New Account</a>
+      <a mat-list-item [routerLink]="['/list-admin']" [routerLinkActive]="['active-route']">List Admin</a>
+      <a mat-list-item [routerLink]="['/shopping-list']" [routerLinkActive]="['active-route']">Lists</a>
+    </mat-nav-list>
+  </mat-toolbar>
+  <div class='spacer'></div>
+  <app-account-menu></app-account-menu>
+</mat-toolbar>

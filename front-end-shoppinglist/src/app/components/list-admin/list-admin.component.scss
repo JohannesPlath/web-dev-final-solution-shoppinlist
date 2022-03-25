@@ -1,0 +1,22 @@
+
+.bottomBox {
+  display: flex;
+  flex-flow: row;
+  //max-height: 200px;
+
+}
+
+.bottomRow {
+  display: flex;
+  flex-flow: row;
+  align-content: center;
+  padding: 1% 1% 1% 1%;
+}
+
+.pattingRight {
+  padding-right: 3%;
+}
+
+.pattingLeft {
+  padding-left: 10%;
+}

@@ -1,0 +1,33 @@
+<mat-sidenav-container class='flex-container'>
+  <mat-sidenav fixedInViewport='false' mode='side'
+               [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
+               [mode]="(isHandset$ | async) ? 'over' : 'side'"
+  >
+    <mat-nav-list>
+      <nav>
+        <a [routerLink]="['/login']" [routerLinkActive]="['active-route']">Login</a>
+      </nav>
+      <nav>
+        <a [routerLink]="['/new-account']" [routerLinkActive]="['active-route']">New Account</a>
+      </nav>
+      <nav>
+        <a [routerLink]="['/list-admin']" [routerLinkActive]="['active-route']">List Admin</a>
+      </nav>
+      <nav>
+        <a [routerLink]="['/m-shopping-list']" [routerLinkActive]="['active-route']">Lists</a>
+      </nav>
+      <nav>
+        <a [routerLink]="['/description']" [routerLinkActive]="['active-route']">Disclaimer</a>
+      </nav>
+    </mat-nav-list>
+  </mat-sidenav>
+
+  <mat-sidenav-content class='flex-container'>
+    <app-appbar class='appbar' (toggleNavEvent)='toggleNav()'></app-appbar>
+    <div class='viewport'>
+      <router-outlet></router-outlet>
+    </div>
+    <app-footer [style.display]="(isHandset$ | async) ? 'none' : 'initial'"></app-footer>
+  </mat-sidenav-content>
+
+</mat-sidenav-container>

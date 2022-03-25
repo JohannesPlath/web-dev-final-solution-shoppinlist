@@ -1,0 +1,9 @@
+<button *ngIf='user$ | async; let user' mat-button [matMenuTriggerFor]='accountMenu'>
+  {{user.famName.charAt(0) + user.famName.charAt(1) + "." + user.givenName.charAt(0) + user.givenName.charAt(1) + "."}}
+</button>
+
+<mat-menu #accountMenu='matMenu' yPosition='below'>
+  <button mat-menu-item (click)='logout()'>Logout</button>
+  <button mat-menu-item (click)='deleteAccount()'>Delete Account</button>
+</mat-menu>
+

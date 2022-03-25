@@ -1,0 +1,100 @@
+<div>
+  <form [formGroup]='addListForm' novalidate (ngSubmit)='onSubmit()'>
+    <mat-card>
+      <mat-card-header>
+        <mat-card-title>insert new listname to generate:</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <div class='row'>
+          <mat-form-field class='full-width'>
+            <input matInput placeholder='List Name:' formControlName='addNewList'>
+            <mat-error *ngIf="addListForm.controls['addNewList'].hasError('required')">
+              Last name is <strong>required</strong>
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </mat-card-content>
+      <mat-card-actions>
+        <button mat-raised-button color='primary' type='submit'>Create List</button>
+      </mat-card-actions>
+    </mat-card>
+  </form>
+
+  <form [formGroup]='changeForm' novalidate>
+    <mat-card-header>
+      <mat-card-title>Your Lists:</mat-card-title>
+    </mat-card-header>
+    <mat-selection-list #list (selectionChange)='onSelection($event, list.selectedOptions.selected)'>
+      <mat-list-option *ngFor='let list of (shoppingLists$ | async)' [value]='list'>
+        <!--routerLink='/shopping-list/{{list.id}}'-->
+        {{"List: " + list.title + "\&emsp;" + " added user(s): " + list.users}}
+
+        {{  ' ( ' + list.users?.length + ' ) '}}
+        <!--        {{ list.title + ' ( ' + list.items.length + ' ) '}}-->
+      </mat-list-option>
+    </mat-selection-list>
+    <mat-card class='shipping-card'>
+      <p>
+        Options selected: {{list.selectedOptions.selected.length}}
+      </p>
+      <div class='mat-form-field'>
+        <div class='bottomBox'>
+          <div class='bottomRow'>
+            <mat-card-actions>
+              <button mat-raised-button color='primary' type='button' (click)='onDelete()'>Delete</button>
+            </mat-card-actions>
+          </div>
+          <div class='bottomRow'>
+            <div class='pattingLeft'>
+              <mat-card-actions>
+                <button mat-raised-button color='primary' type='button'
+                        (click)='openAndNavigate()'>Enter First Checked List
+                </button>
+              </mat-card-actions>
+            </div>
+          </div>
+        </div>
+
+        <div class='bottomRow'>
+          <button mat-raised-button color='primary' type='button' (click)='addUser()'>add user</button>
+          <div class='pattingLeft'>
+            <mat-form-field class='full-width'>
+              <input matInput placeholder='add User' formControlName='addUser'>
+              <mat-error *ngIf="changeForm.controls['addUser'].hasError('required')">
+                Last name is <strong>required</strong>
+              </mat-error>
+            </mat-form-field>
+          </div>
+        </div>
+        <br>
+        <div class='bottomRow'>
+          <mat-form-field style='margin-bottom: -1.34375em' appearance='fill'>
+            <mat-label>Choose mail to remove</mat-label>
+            <mat-select (selectionChange)='onSelectUserList($event)'>
+              <mat-option *ngFor='let email of (allUserToDelete$ | async)' [value]='email'>
+                {{email }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+
+          <div class='pattingLeft'>
+            <button mat-raised-button color='primary' type='button' [disabled]='!userToRemove'
+                    (click)='deleteUserFromList()'>remove user
+            </button>
+          </div>
+        </div>
+        <br>
+      </div>
+    </mat-card>
+  </form>
+  <div [style.display]="addNewList ? 'initial' : 'none'">
+    <p>Create List fail! List with that name already exists in DataBase!</p>
+  </div>
+  <div [style.display]="addNewUser ? 'initial' : 'none'">
+    <p>Add user fail! Because there is no User with that mail on DataBase</p>
+  </div>
+  <div [style.display]="addNewUserWithoutList ? 'initial' : 'none'">
+    <p>Add user fail! Because there is no list selected</p>
+  </div>
+
+</div>

@@ -1,0 +1,12 @@
+// Konsole - Angular
+// Frontend
+ng new <Dateiname>  -  projekt erstellen
+
+// BackEnd - NestJs 
+
+npm i -g @nestjs/cli
+nest new project-name
+
+
+
+todo: nav etrahieren

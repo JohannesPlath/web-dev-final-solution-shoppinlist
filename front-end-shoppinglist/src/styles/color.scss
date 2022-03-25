@@ -1,0 +1,23 @@
+:root {
+  --primary-color: #c2185b;;
+  --accent-color: #b0bec5;
+  --color-text-grey: rgba(255, 255, 255, .7);
+}
+
+.color-primary {
+  color: var(--primary-color) !important;
+}
+
+.color-accent {
+  color: var(--accent-color) !important;
+}
+
+.color-text-grey {
+  color: var(--color-text-grey) !important;
+}
+
+a {
+  color: var(--color-text-grey)
+}
+
+

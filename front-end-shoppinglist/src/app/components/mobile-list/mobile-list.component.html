@@ -1,0 +1,59 @@
+<div class='flex-row-max-height'>
+  <div class='flex-column full-width'>
+    <div class='flex-row'>
+      <mat-form-field style='margin-bottom: -1.34375em' appearance='fill'>
+        <mat-label>Choose a list</mat-label>
+        <mat-select [(value)]='initialSelection' (selectionChange)='onSelectList($event)'>
+          <mat-option *ngFor='let list of (listsOfUser$ | async)' [value]='list.title'>
+            {{list.title}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      <mat-form-field style='margin-bottom: -1.34375em' appearance='fill'>
+        <mat-label>Seclect first entry</mat-label>
+        <mat-select [(value)]='initialSelection' (selectionChange)='onSelectProductGroup($event)'>
+          <mat-option *ngFor='let list of (groupOfProducts)' [value]='list'>
+            {{list}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+    <div class='flex-row-max-height'>
+      <ng-scrollbar class='dark-scrollbar' track='vertical' visibility='always'>
+        <mat-list *ngFor='let productItemMap of (productItemMaps$ | async)'>
+          <div mat-subheader>{{ productItemMap.key }}</div>
+          <div class='ripple-container' matRipple *ngFor='let shoppingItem of productItemMap.values'>
+            <mat-list-item class='color-text-grey' (click)='onChangeBoughtBy(shoppingItem)'
+                           (mousedown)='onEnter(shoppingItem)' (mouseup)='onLeave()'
+                           (touchstart)='onEnter(shoppingItem)' (touchend)='onLeave()'>
+              <mat-icon matListIcon>folder</mat-icon>
+              <p matLine> {{shoppingItem.product}} </p>
+              <p matLine *ngIf='shoppingItem.bought_by != null'> {{"bought by: " + shoppingItem.bought_by}} </p>
+              <mat-slide-toggle color='primary' [checked]='!!shoppingItem.bought_by'></mat-slide-toggle>
+            </mat-list-item>
+          </div>
+          <mat-divider></mat-divider>
+        </mat-list>
+      </ng-scrollbar>
+    </div>
+    <div class='flex-row'>
+      <form [formGroup]='productForm' class='product-form' (ngSubmit)='onAddItem()'>
+        <mat-form-field class='full-width' appearance='fill'>
+          <mat-label>Product</mat-label>
+          <input matInput maxlength='40' formControlName='productText' placeholder='maybe beer?'>
+        </mat-form-field>
+
+        <mat-form-field appearance='fill'>
+          <mat-label>Product Group</mat-label>
+          <mat-select formControlName='selectedProductGroup'>
+            <mat-option *ngFor='let e of groupOfProducts' [value]='e'>
+              {{e}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <button mat-raised-button color='accent' type='submit'>Submit</button>
+      </form>
+    </div>
+  </div>
+</div>
